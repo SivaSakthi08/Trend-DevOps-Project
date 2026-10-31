@@ -1,0 +1,135 @@
+Started by user Sivasakthi
+Obtained Jenkinsfile from git https://github.com/SivaSakthi08/Trend-DevOps-Project.git
+[Pipeline] Start of Pipeline
+[Pipeline] node
+Running on Jenkins in /var/lib/jenkins/workspace/Trendify-CI-CD
+[Pipeline] {
+[Pipeline] stage
+[Pipeline] { (Declarative: Checkout SCM)
+[Pipeline] checkout
+The recommended git tool is: git
+No credentials specified
+ > git rev-parse --resolve-git-dir /var/lib/jenkins/workspace/Trendify-CI-CD/.git # timeout=10
+Fetching changes from the remote Git repository
+ > git config remote.origin.url https://github.com/SivaSakthi08/Trend-DevOps-Project.git # timeout=10
+Fetching upstream changes from https://github.com/SivaSakthi08/Trend-DevOps-Project.git
+ > git --version # timeout=10
+ > git --version # 'git version 2.50.1'
+ > git fetch --tags --force --progress -- https://github.com/SivaSakthi08/Trend-DevOps-Project.git +refs/heads/*:refs/remotes/origin/* # timeout=10
+ > git rev-parse refs/remotes/origin/main^{commit} # timeout=10
+Checking out Revision 4d0570a827a43fb0e2abd9299919c1ca6368d530 (refs/remotes/origin/main)
+ > git config core.sparsecheckout # timeout=10
+ > git checkout -f 4d0570a827a43fb0e2abd9299919c1ca6368d530 # timeout=10
+Commit message: "Add Docker build stage to Jenkins pipeline"
+ > git rev-list --no-walk 99915fc1db3efaa5672e4efd285e0e644b5c8106 # timeout=10
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] stage
+[Pipeline] { (Verify Source Code)
+[Pipeline] echo
+Trendify pipeline started!
+[Pipeline] sh
++ pwd
+/var/lib/jenkins/workspace/Trendify-CI-CD
+[Pipeline] sh
++ ls -la
+total 5208
+drwxr-xr-x. 4 jenkins jenkins   16384 Oct 31 16:02 .
+drwxr-xr-x. 4 jenkins jenkins      54 Oct 31 14:53 ..
+-rw-r--r--. 1 jenkins jenkins      68 Oct 31 14:53 .dockerignore
+drwxr-xr-x. 7 jenkins jenkins     146 Oct 31 16:02 .git
+-rw-r--r--. 1 jenkins jenkins      56 Oct 31 14:53 .gitignore
+-rw-r--r--. 1 jenkins jenkins 2187092 Oct 31 14:53 Cluster Nodes Active.png
+-rw-r--r--. 1 jenkins jenkins  800110 Oct 31 14:53 Docker.png
+-rw-r--r--. 1 jenkins jenkins      98 Oct 31 14:53 Dockerfile
+-rw-r--r--. 1 jenkins jenkins  326669 Oct 31 14:53 Jenkins.png
+-rw-r--r--. 1 jenkins jenkins     482 Oct 31 16:02 Jenkinsfile
+-rw-r--r--. 1 jenkins jenkins    1710 Oct 31 14:53 README.md
+-rw-r--r--. 1 jenkins jenkins  645903 Oct 31 14:53 Terraform 01.png
+-rw-r--r--. 1 jenkins jenkins  641039 Oct 31 14:53 Terraform 02.png
+-rw-r--r--. 1 jenkins jenkins  684993 Oct 31 14:53 Terraform 03.png
+drwxr-xr-x. 3 jenkins jenkins      54 Oct 31 14:53 dist
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Build Docker Image)
+[Pipeline] sh
++ docker build -t sivasakthi08/trendify-app:1.0 .
+#0 building with "default" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile: 188B done
+#1 DONE 0.1s
+
+#2 [internal] load metadata for docker.io/library/nginx:alpine
+#2 DONE 1.9s
+
+#3 [internal] load .dockerignore
+#3 transferring context: 161B done
+#3 DONE 0.0s
+
+#4 [1/2] FROM docker.io/library/nginx:alpine@sha256:785835ea65db4bba6f021acc0f3be91b0fef76a53fe41f8588c6698d2aed0606
+#4 resolve docker.io/library/nginx:alpine@sha256:785835ea65db4bba6f021acc0f3be91b0fef76a53fe41f8588c6698d2aed0606 0.0s done
+#4 ...
+
+#5 [internal] load build context
+#5 transferring context: 9.24MB 0.1s done
+#5 DONE 0.2s
+
+#4 [1/2] FROM docker.io/library/nginx:alpine@sha256:785835ea65db4bba6f021acc0f3be91b0fef76a53fe41f8588c6698d2aed0606
+#4 sha256:785835ea65db4bba6f021acc0f3be91b0fef76a53fe41f8588c6698d2aed0606 10.33kB / 10.33kB done
+#4 sha256:2db7d28517d1fba17c2da3210395f7be11a11b419246ad0da2edf782af72f367 2.50kB / 2.50kB done
+#4 sha256:7b229517ed222597277036d94892173207d01a731ab3a88eeb1de2e963a2c788 0B / 3.85MB 0.2s
+#4 sha256:3d6cab9c2941df2441024a2f02a65ebe1b8916c3cbe7b9527f62627accea8004 12.31kB / 12.31kB done
+#4 sha256:12b85cff06fd7d383d36a9c96503fe049c9d4bf3dfda5cbb9ffa6ae99b9c07a6 0B / 1.94MB 0.2s
+#4 sha256:657023555a2a19dc6036468198bb350d2c7feaac7f2d0a3901b4dd3cb25e40c5 0B / 629B 0.2s
+#4 sha256:7b229517ed222597277036d94892173207d01a731ab3a88eeb1de2e963a2c788 3.85MB / 3.85MB 0.2s done
+#4 extracting sha256:7b229517ed222597277036d94892173207d01a731ab3a88eeb1de2e963a2c788 0.1s
+#4 sha256:7cc330898115ce55acccb0cc1e7dd091df4410c8c5f3c540710ee0ac689f5fcb 0B / 964B 0.3s
+#4 sha256:12b85cff06fd7d383d36a9c96503fe049c9d4bf3dfda5cbb9ffa6ae99b9c07a6 1.94MB / 1.94MB 0.5s done
+#4 extracting sha256:7b229517ed222597277036d94892173207d01a731ab3a88eeb1de2e963a2c788 0.1s done
+#4 extracting sha256:12b85cff06fd7d383d36a9c96503fe049c9d4bf3dfda5cbb9ffa6ae99b9c07a6
+#4 sha256:26185d08a3ec318dd85a6c9f2172e714ec13cececd7f33c533b40b1689f9fedb 0B / 404B 0.5s
+#4 extracting sha256:12b85cff06fd7d383d36a9c96503fe049c9d4bf3dfda5cbb9ffa6ae99b9c07a6 0.1s done
+#4 sha256:657023555a2a19dc6036468198bb350d2c7feaac7f2d0a3901b4dd3cb25e40c5 629B / 629B 0.6s done
+#4 sha256:7cc330898115ce55acccb0cc1e7dd091df4410c8c5f3c540710ee0ac689f5fcb 964B / 964B 0.6s done
+#4 sha256:26185d08a3ec318dd85a6c9f2172e714ec13cececd7f33c533b40b1689f9fedb 404B / 404B 0.7s done
+#4 extracting sha256:657023555a2a19dc6036468198bb350d2c7feaac7f2d0a3901b4dd3cb25e40c5 done
+#4 extracting sha256:7cc330898115ce55acccb0cc1e7dd091df4410c8c5f3c540710ee0ac689f5fcb done
+#4 sha256:2ec5fb117ffa9a78b15fb6a78745ffc569c8da0aee9f36ace4cd67a44b1fef79 0B / 1.21kB 0.7s
+#4 sha256:9b0f7dfe35b2711a17f60dadd6d4035dc0cdee152538cc5c0987029e94679548 0B / 1.40kB 0.7s
+#4 sha256:b9b388a21ecfde6ac80505f23f527146a2129dfb104e79b029bbd00d4cc1a919 0B / 20.53MB 0.7s
+#4 extracting sha256:26185d08a3ec318dd85a6c9f2172e714ec13cececd7f33c533b40b1689f9fedb
+#4 extracting sha256:26185d08a3ec318dd85a6c9f2172e714ec13cececd7f33c533b40b1689f9fedb done
+#4 sha256:2ec5fb117ffa9a78b15fb6a78745ffc569c8da0aee9f36ace4cd67a44b1fef79 1.21kB / 1.21kB 0.8s done
+#4 sha256:9b0f7dfe35b2711a17f60dadd6d4035dc0cdee152538cc5c0987029e94679548 1.40kB / 1.40kB 0.8s done
+#4 sha256:b9b388a21ecfde6ac80505f23f527146a2129dfb104e79b029bbd00d4cc1a919 20.53MB / 20.53MB 1.0s
+#4 extracting sha256:2ec5fb117ffa9a78b15fb6a78745ffc569c8da0aee9f36ace4cd67a44b1fef79 done
+#4 extracting sha256:9b0f7dfe35b2711a17f60dadd6d4035dc0cdee152538cc5c0987029e94679548 done
+#4 sha256:b9b388a21ecfde6ac80505f23f527146a2129dfb104e79b029bbd00d4cc1a919 20.53MB / 20.53MB 1.0s done
+#4 extracting sha256:b9b388a21ecfde6ac80505f23f527146a2129dfb104e79b029bbd00d4cc1a919 0.1s
+#4 extracting sha256:b9b388a21ecfde6ac80505f23f527146a2129dfb104e79b029bbd00d4cc1a919 0.5s done
+#4 DONE 1.8s
+
+#6 [2/2] COPY dist/ /usr/share/nginx/html/
+#6 DONE 0.3s
+
+#7 exporting to image
+#7 exporting layers 0.1s done
+#7 writing image sha256:501e1db5f847f2467bf73dee882c526feb28712dd23abdffc597628a14bfb5d1 done
+#7 naming to docker.io/sivasakthi08/trendify-app:1.0 done
+#7 DONE 0.1s
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // node
+[Pipeline] End of Pipeline
+Finished: SUCCESS
