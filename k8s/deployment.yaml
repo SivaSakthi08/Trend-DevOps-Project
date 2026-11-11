@@ -15,5 +15,6 @@ spec:
       containers:
         - name: trendify
           image: sivasakthi08/trendify-app:1.0
+          imagePullPolicy: Always
           ports:
             - containerPort: 80

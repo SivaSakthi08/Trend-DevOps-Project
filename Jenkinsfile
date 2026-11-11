@@ -1,4 +1,3 @@
-
 pipeline {
     agent any
 
@@ -37,6 +36,17 @@ pipeline {
                 }
             }
         }
+
+        stage('Deploy to EKS') {
+            steps {
+                sh '''
+                    aws eks update-kubeconfig --region ap-south-1 --name trendify-eks-cluster
+                    kubectl apply -f k8s/
+                    kubectl rollout restart deployment/trendify-deployment
+                    kubectl rollout status deployment/trendify-deployment --timeout=180s
+                    kubectl get deployments,pods,services -n default
+                '''
+            }
+        }
     }
 }
-
