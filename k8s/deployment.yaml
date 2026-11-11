@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: trendify-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: trendify
+  template:
+    metadata:
+      labels:
+        app: trendify
+    spec:
+      containers:
+        - name: trendify
+          image: sivasakthi08/trendify-app:1.0
+          ports:
+            - containerPort: 80
